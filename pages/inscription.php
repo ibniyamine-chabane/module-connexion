@@ -39,7 +39,7 @@
                         if ($loginOk == true) { // le login n'existe pas 
 
                             $request = $connectDatabase->query("INSERT INTO utilisateurs(login, prenom, nom, password) VALUES ('$login','$prenom','$nom','$password')");
-                                
+                            header("Location:connexion.php");    
                         }
 
                 } else {
