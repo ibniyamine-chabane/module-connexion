@@ -27,7 +27,7 @@
 
                             //echo $user[0].'</br>'; //test sur l'index $user
                                    
-                            if ( $_POST['login'] == $user[0] ) { //une condition dans le cas ou le login existe déja 
+                            if ( $login == $user[0] ) { //une condition dans le cas ou le login existe déja 
 
                                 $message = "le login est déja pris";
                                 $loginOk = false;
