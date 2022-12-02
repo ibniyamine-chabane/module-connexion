@@ -25,19 +25,21 @@
 
                         foreach ($data as $user) { // Je lis dans le tableau de la base de donées avec une boucle
 
-                            //echo $user[0].'</br>';                
-                            if ( $_POST["login"] == $user[0] ) { //une condition dans le cas ou le login existe déja 
-                                                                     
-                                $message = "le login est déja pris";
+                            echo $user[0].'</br>'; 
+                                   
+                            if ( $_POST['login'] == $user[0] ) { //une condition dans le cas ou le login existe déja 
 
-                            }else{
+                                $message = "le login est déja pris";
+                                $loginOk = false;
+                                break;
+                            } else {
                                 $loginOk = true;
                             }
-
+                            echo 'post : '. $_POST['login'];
+                            var_dump($loginOk);
                         }
 
-                        if ($loginOk == true) { // le login n'existe pas 
-
+                        if ( $loginOk ) { // on insert l'user dans la bdd et on fait une redirection vers la page connexion
                             $request = $connectDatabase->query("INSERT INTO utilisateurs(login, prenom, nom, password) VALUES ('$login','$prenom','$nom','$password')");
                             header("Location:connexion.php");    
                         }
@@ -53,11 +55,11 @@
         }    
 
 
-       //echo $user[1];
+       //echo $user[0];
 
 
-//var_dump($data);
-//var_dump($_POST);
+var_dump($data);
+var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
