@@ -9,16 +9,23 @@ $message = "";
 
                 $login = $_POST['login'];
                 $password = $_POST['password'];
-                $login = false;
+                $logged = false;
                 
                 foreach ($data as $user) { //je lis le contenu de la table $con de la BDD
-                    
-                    if ($_POST["login"] === $user['login'] &&
-                    $_POST['password'] === $user['password']) {
-                        echo "vous etes connecter";
+    
+                    if ($login === $user[0] &&
+                    $password === $user[1]) {
+                        //$message = "vous etes connecter"; // test pour afficher si on est connecté 
+                        $logged = true;
+                        break;
                     } else {
-                        $message="erreur dans le mdp ou login";
+                        $message = "erreur dans le mdp ou login";
                     }
+                }
+
+                if ($logged) { // si l'utilisateur est dans la BDD est bien authentifié
+                    //session_start();
+                    header("Location:profil.php");
                 }
 
             } else {
@@ -26,10 +33,11 @@ $message = "";
             }
         }
 
-    var_dump($_POST);
-    var_dump($_SESSION);
+    //var_dump($_POST);
+    //var_dump($data);
+    //echo $user[1];
 
-?>
+?>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
