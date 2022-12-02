@@ -25,7 +25,7 @@
 
                         foreach ($data as $user) { // Je lis dans le tableau de la base de donées avec une boucle
 
-                            echo $user[0].'</br>'; 
+                            //echo $user[0].'</br>'; //test sur l'index $user
                                    
                             if ( $_POST['login'] == $user[0] ) { //une condition dans le cas ou le login existe déja 
 
@@ -35,8 +35,8 @@
                             } else {
                                 $loginOk = true;
                             }
-                            echo 'post : '. $_POST['login'];
-                            var_dump($loginOk);
+                            //echo 'post : '. $_POST['login']; // echo utiliser pour afficher les tests
+                            //var_dump($loginOk); // 
                         }
 
                         if ( $loginOk ) { // on insert l'user dans la bdd et on fait une redirection vers la page connexion
@@ -58,8 +58,8 @@
        //echo $user[0];
 
 
-var_dump($data);
-var_dump($_POST);
+//var_dump($data);
+//var_dump($_POST);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
