@@ -58,7 +58,7 @@ $message = "";
             <label for="flogin">Login</label>
             <input type="text" name="login" placeholder="login">
             <label for="fpassword">Mot de Passe</label>
-            <input type="text" name="password" placeholder="Mot de Passe">
+            <input type="password" name="password" placeholder="Mot de Passe">
             <input type="submit" name="submit" value="Se Connecter">
         </form>
     </div>
