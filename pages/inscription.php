@@ -5,6 +5,7 @@
 
         //je me connecte à la base de donnée moduleconnexion et je récupère les donnée de la table avec $data.
         $connectDatabase = mysqli_connect("localhost", "root", "", "moduleconnexion",3307);
+        //$connectDatabase = mysqli_connect("localhost", "root", "", "moduleconnexion",3307);
         $request = $connectDatabase->query('SELECT `login`, `prenom`, `nom`, `password` FROM utilisateurs');
         $data = $request->fetch_all();  //je recupere tous les donné en une fois avec fetch_all.
 
