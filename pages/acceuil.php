@@ -8,7 +8,15 @@
     <title>Document</title>
 </head>
 <body>
-    <?php  include("header.php");   ?>
+    <?php  include("header.php"); session_start(); ?>
+
+        <div class="container-form">
+        <?php if (!empty($_SESSION['login'])): ?>
+            <h1>Bienvenu <?= $_SESSION['login'] ?></h1>
+        <?php else: ?>
+            <h1>Bienvenue Invité</h1>
+        <?php endif; ?>     
+        </div>
     
     <?php  include("footer.php");   ?>
     
