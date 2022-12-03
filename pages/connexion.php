@@ -1,5 +1,6 @@
 <?php 
 include("connect.php");
+session_start();
 
 $message = "";
 
@@ -16,16 +17,17 @@ $message = "";
                     if ($login === $user[0] &&
                     $password === $user[1]) {
                         //$message = "vous etes connecter"; // test pour afficher si on est connecté 
+                        
+                        $_SESSION['login'] = $login;
                         $logged = true;
                         break;
                     } else {
                         $message = "erreur dans le mdp ou login";
                     }
                 }
-
+                
                 if ($logged) { // si l'utilisateur est dans la BDD est bien authentifié
-                    //session_start();
-                    header("Location:profil.php");
+                    header("Location:acceuil.php");
                 }
 
             } else {
