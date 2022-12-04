@@ -17,7 +17,7 @@ $data = $request->fetch_All();
     <title>administrateur</title>
 </head>
 <body>
-    <?php  include("header.php"); ?>
+    <?php session_start(); include("header.php"); ?>
 
     <table border>
         <thead>
