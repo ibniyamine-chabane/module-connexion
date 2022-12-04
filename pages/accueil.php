@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Document</title>
+    <title>Accueil</title>
 </head>
 <body>
     <?php session_start(); include("header.php"); ?>
 
-        <div class="container-form">
+        <div class="container-home">
         <?php if (!empty($_SESSION['login'])): ?>
             <h1>Bienvenu <?= $_SESSION['login'] ?></h1>
         <?php else: ?>

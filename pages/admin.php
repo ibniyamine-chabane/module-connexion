@@ -19,6 +19,7 @@ $data = $request->fetch_All();
 <body>
     <?php session_start(); include("header.php"); ?>
 
+    <div class="container-admin">
     <table border>
         <thead>
             <th>login</th>
@@ -40,6 +41,7 @@ $data = $request->fetch_All();
     }         
     ?>
     </table>
+    </div>
     <?php  include("footer.php"); ?>
 </body>
 </html>

@@ -1,9 +1,5 @@
 <footer>
     <div>
-        <ul>
-            <li>Accueil</li>
-            <li>Inscription</li>
-            <li>Connexion</li>
-        </ul>
+        <p>Not a Copyright, Module de connexion, Ibni-Yamine Chabane</p>
     </div>
 </footer>
