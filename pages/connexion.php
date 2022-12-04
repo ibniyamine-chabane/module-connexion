@@ -27,7 +27,7 @@ $message = "";
                 }
                 
                 if ($logged) { // si l'utilisateur est dans la BDD est bien authentifié
-                    header("Location:acceuil.php");
+                    header("Location:accueil.php");
                 }
 
             } else {
