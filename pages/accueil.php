@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <?php  include("header.php"); session_start(); ?>
+    <?php session_start(); include("header.php"); ?>
 
         <div class="container-form">
         <?php if (!empty($_SESSION['login'])): ?>
