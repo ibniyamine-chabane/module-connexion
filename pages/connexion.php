@@ -1,6 +1,10 @@
 <?php 
 include("connect.php");
 session_start();
+if (!empty($_SESSION['login'])){ // si l'utilisateur est déja connecté il est rediriger vers la page d'accueil.php
+    header("Location:accueil.php");
+    exit;
+}
 
 $message = "";
 
