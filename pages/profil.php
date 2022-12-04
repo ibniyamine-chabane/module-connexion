@@ -2,7 +2,7 @@
 
         session_start();
         if (empty($_SESSION['login'])){ // si l'utilisateur n'est pas connecté, il est rediriger vers la page d'accueil.php
-            header("Location:accueil.php");
+            header("Location:index.php");
             exit;
         }
 

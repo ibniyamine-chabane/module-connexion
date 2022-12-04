@@ -1,8 +1,15 @@
-<?php  $database_Host = 'localhost';
+<?php  
+session_start();
+
+if (!empty($_SESSION['login']) && $_SESSION['login'] != 'admin'){ // si l'utilisateur n'est pas connecté, il est rediriger vers la page d'accueil.php
+    header("Location:index.php");
+    exit;
+}
+$database_Host = 'localhost';
 $database_User = 'root';
 $database_Pass = '';
 $database_Name = 'moduleconnexion';
-
+//$con = mysqli_connect($database_Host, $database_User, $database_Pass, $database_Name, 3307); 
 $con = mysqli_connect($database_Host, $database_User, $database_Pass, $database_Name, 3307); 
 $request = $con->query('SELECT `login`, `prenom`, `nom`, `password` FROM utilisateurs');
 $data = $request->fetch_All();
@@ -17,7 +24,7 @@ $data = $request->fetch_All();
     <title>administrateur</title>
 </head>
 <body>
-    <?php session_start(); include("header.php"); ?>
+    <?php  include("header.php"); ?>
 
     <div class="container-admin">
     <table border>
