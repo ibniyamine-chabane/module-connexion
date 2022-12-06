@@ -11,7 +11,12 @@
         //$connectDatabase = mysqli_connect("localhost", "root", "", "moduleconnexion",3307);
         $request = $connectDatabase->query('SELECT `login`, `prenom`, `nom`, `password` FROM utilisateurs');
         $data = $request->fetch_all();  //je recupere tous les donné en une fois avec fetch_all
-        
+
+        $login_prefilled = $_SESSION['login'];
+        $firstname_prefilled = $_SESSION['prenom'];
+        $name_prefilled = $_SESSION['nom'];
+        $password_prefilled = $_SESSION['password'];
+
         if (isset($_POST["submit"])) { // si j'appuie sur le boutton submit
                 
                     
@@ -76,11 +81,11 @@
             <p class="msg-error"><!--<?= $message ?>--></p>
             <form method="post">
                 <label for="flogin">Login</label>
-                <input type="text" name="login" placeholder="Choisissez votre login">
+                <input type="text" name="login" value=<?= $login_prefilled;?> placeholder="Choisissez votre login">
                 <label for="fprenom">Prénom</label>
-                <input type="text" name="prenom" placeholder="Votre prénom">
+                <input type="text" name="prenom" value=<?= $firstname_prefilled;?> placeholder="Votre prénom">
                 <label for="fnom">Nom</label>
-                <input type="text" name="nom" placeholder="Votre nom">
+                <input type="text" name="nom" value=<?= $name_prefilled;?> placeholder="Votre nom">
                 <label for="fpassword">Mot de Passe</label>
                 <input type="password" name="password" placeholder="Mot de Passe">
                 <input type="password" name="password_confirm" placeholder="Confirmer le mot de Passe">

@@ -6,8 +6,11 @@ if (!empty($_SESSION['login'])){ // si l'utilisateur est déja connecté il est 
     exit;
 }
 
-$message = "";
+        
 
+
+        $message = "";
+        
         if (isset($_POST["submit"])) { // si j'appuie sur le boutton submit su formulaire de connexion
 
             if ($_POST['login'] && $_POST['password']) { // si les champ login et password sont remplis
@@ -31,6 +34,23 @@ $message = "";
                 }
                 
                 if ($logged) { // si l'utilisateur est dans la BDD est bien authentifié
+                    // ici je récupere les info de l'utilisateur qui viens de se connecter 
+                    //avec une requete sql et j'enregistre ces infos dans des variable $_SESSION pour la page de profil.
+                    $connectDatabase2 = mysqli_connect("localhost", "root", "", "moduleconnexion",3307);
+                    $filled = $_SESSION['login'];
+                    $sql_select = "SELECT `login`, `prenom`, `nom`, `password` FROM utilisateurs WHERE login = '$filled'";
+                    $request_info = $connectDatabase2->query($sql_select);
+                    $user_info = $request_info->fetch_all();
+                    $login_prefilled = $user_info[0][0];
+                    $firstname_prefilled = $user_info[0][1];
+                    $name_prefilled = $user_info[0][2];
+                    $password_prefilled = $user_info[0][3];
+                    $_SESSION['login'] = $login_prefilled;
+                    $_SESSION['prenom'] = $firstname_prefilled;
+                    $_SESSION['nom'] = $name_prefilled;
+                    $_SESSION['password'] = $password_prefilled;
+
+
                     header("Location:index.php");
                 }
 
@@ -39,9 +59,7 @@ $message = "";
             }
         }
 
-    //var_dump($_POST);
-    //var_dump($data);
-    //echo $user[1];
+        
 
 ?>  
 <!DOCTYPE html>
