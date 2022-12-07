@@ -11,7 +11,7 @@ $database_Pass = '';
 $database_Name = 'moduleconnexion';
 //$con = mysqli_connect($database_Host, $database_User, $database_Pass, $database_Name, 3307); 
 $con = mysqli_connect($database_Host, $database_User, $database_Pass, $database_Name, 3307); 
-$request = $con->query('SELECT `login`, `prenom`, `nom`, `password` FROM utilisateurs');
+$request = $con->query('SELECT * FROM utilisateurs');
 $data = $request->fetch_All();
 ?>
 <!DOCTYPE html>
@@ -27,8 +27,9 @@ $data = $request->fetch_All();
     <?php  include("header.php"); ?>
 
     <div class="container-admin">
-    <table border>
+    <table border style="text-align: center;">
         <thead>
+            <th>id</th>
             <th>login</th>
             <th>prenom</th>
             <th>nom</th>
@@ -44,6 +45,7 @@ $data = $request->fetch_All();
                 <td>'.$users[1].'</td>
                 <td>'.$users[2].'</td>
                 <td>'.$users[3].'</td>
+                <td>'.$users[4].'</td>
               </tr>';
     }         
     ?>
