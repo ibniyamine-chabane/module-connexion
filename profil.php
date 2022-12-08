@@ -11,6 +11,9 @@
         //$connectDatabase = mysqli_connect("localhost", "root", "", "moduleconnexion",3307);
         $request = $connectDatabase->query('SELECT `login`, `prenom`, `nom`, `password` FROM utilisateurs');
         $data = $request->fetch_all();  //je recupere tous les donné en une fois avec fetch_all
+        
+        
+        
         $filled = $_SESSION['login']; //le login de la session active stocker dans la variable filled
         $login_prefilled = $_SESSION['login'];
         $firstname_prefilled = $_SESSION['prenom'];
@@ -78,9 +81,9 @@
                 $change_password_ok = false;
                 $current_password_check = false;
                 
-                foreach ($data as $user) {
+                foreach ($data as $user_password_db) {
 
-                    if ( $current_password != $user[3] ) {
+                    if ( $current_password != $user_password_db[3] ) {
                         $message = "le mot de passe actuel ne correspond pas";
                     } else {
                         $message = "Correspond!";
@@ -98,7 +101,6 @@
                         $update = "UPDATE `utilisateurs` SET `password` = '$new_password' WHERE `utilisateurs`.`login` = '$filled'";
                         $request_change_password = $connectDatabase->query($update);
                         header("Location:profil.php");
-
                     }
 
                 }
@@ -107,13 +109,43 @@
                 $message = "vous devez remplir tous les champ mot de passe !";
             }
 
+            if ( $_POST['login'] && $_POST['current_password'] ) {
+                
+                $new_login = $_POST['login']; 
+                $new_firstname = $_POST['prenom']; 
+                $new_name = $_POST['nom']; 
+
+                $current_password = $_POST['current_password']; 
+
+                foreach ($data as $user_login_db) {
+                    
+                    $user_firstname_db = $user_login_db[1];
+                    $user_name_db = $user_login_db[2];
+                    $user_password_db = $user_login_db[3];
+
+                    if ( $filled == $user_login_db[0] && !empty($new_login) && 
+                    $current_password == $user_password_db && $firstname_prefilled == $user_firstname_db && 
+                    $name_prefilled == $user_name_db) {
+                        $update = "UPDATE `utilisateurs` SET `login` = '$new_login' , `prenom` = '$new_firstname' , `nom` = '$new_name'  WHERE `utilisateurs`.`login` = '$filled'";
+                        $request_change_password = $connectDatabase->query($update);
+                        $message = "Succes !!";
+                        $_SESSION['login'] = $new_login;
+                        $_SESSION['prenom'] = $new_firstname;
+                        $_SESSION['nom'] = $new_name;
+                        header("Location:profil.php");
+                    } else {
+                        $message = "erreur sur le mot de passe actuel";
+                    }
+                }
+            }
+
         }
        
-        var_dump($data);
+        //var_dump($data);
         
-        foreach ($data as $user) {
+        /*foreach ($data as $user) {
             echo $user[3];    
-        }
+        }*/
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -137,6 +169,7 @@
                 <input type="text" name="prenom" value=<?= $firstname_prefilled;?> placeholder="Votre prénom">
                 <label for="fnom">Nom</label>
                 <input type="text" name="nom" value=<?= $name_prefilled;?> placeholder="Votre nom">
+                <!--<input type="submit" name="submit" value="mettre à jour les infos">-->
                 <label for="fcurrentpassword">renseigner votre mot de passe actuel</label>
                 <input type="password" name="current_password" placeholder="votre mot de passe actuel">
                 <label for="fpassword">Nouveau mot de passe</label>

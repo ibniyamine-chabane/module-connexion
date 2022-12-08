@@ -11,7 +11,7 @@ $database_Pass = '';
 $database_Name = 'moduleconnexion';
 //$con = mysqli_connect($database_Host, $database_User, $database_Pass, $database_Name, 3307); 
 $con = mysqli_connect($database_Host, $database_User, $database_Pass, $database_Name, 3307); 
-$request = $con->query('SELECT * FROM utilisateurs');
+$request = $con->query('SELECT * FROM utilisateurs ORDER BY id');
 $data = $request->fetch_All();
 ?>
 <!DOCTYPE html>

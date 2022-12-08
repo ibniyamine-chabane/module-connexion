@@ -19,11 +19,11 @@
                     
             if ($_POST['login'] && $_POST['prenom'] && $_POST['nom'] && $_POST['password'] && $_POST['password_confirm']) { // si tous les champs sont remplis
 
-                $login      = $_POST['login'];
-                $prenom     = $_POST['prenom'];
-                $nom        = $_POST['nom'];
-                $password   = $_POST['password'];
-                $password_confirm = $_POST['password_confirm'];
+                $login      = trim($_POST['login']);
+                $prenom     = trim($_POST['prenom']);
+                $nom        = trim($_POST['nom']);
+                $password   = trim($_POST['password']);
+                $password_confirm = trim($_POST['password_confirm']);
 
                 if ($password == $password_confirm) {// si password et password_confirm sont identique
 
@@ -60,7 +60,7 @@
 
         }    
 
-
+        
        //echo $user[0];
 
 
